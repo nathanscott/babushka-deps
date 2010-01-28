@@ -14,5 +14,4 @@ pkg 'sqlite software' do
     via :apt, %w[libsqlite3-ruby libsqlite3-dev]
     via :brew, 'sqlite'
   }
-  provides 'sqlite'
 end
