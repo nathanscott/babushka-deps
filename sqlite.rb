@@ -9,7 +9,7 @@ gem 'sqlite gem' do
   provides []
 end
 
-pkg 'sqlite software'
+pkg 'sqlite software' do
   installs {
     via :apt, %w[libsqlite3-ruby libsqlite3-dev]
     via :brew, 'sqlite'
