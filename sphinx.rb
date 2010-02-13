@@ -3,7 +3,7 @@ src 'sphinx' do
   provides 'search'
   define_var :database_support,
     :message => "Which databases would you like sphinx to support?",
-    :default => 'master',
+    :default => '--with-pgsql --without-mysql',
     :choice_descriptions => {
       '--with-pgsql --without-mysql' =>'Just postgres',
       '' => 'Just mysql',
