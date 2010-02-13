@@ -1,8 +1,15 @@
 src 'sphinx' do
   requires 'build tools'
   provides 'search'
-  prefix '/opt/local'
-  configure_args '--with-pgsql'
+  define_var :database_support,
+    :message => "Which databases would you like sphinx to support?",
+    :default => 'master',
+    :choice_descriptions => {
+      '--with-pgsql --without-mysql' =>'Just postgres',
+      '' => 'Just mysql',
+      '--with-pgsql' => 'Both mysql and postgres'
+    }
+  configure_args var(:database_support)
   source "http://www.sphinxsearch.com/downloads/sphinx-0.9.9.tar.gz"
 end
 
