@@ -11,7 +11,5 @@ src 'sphinx' do
       }
     configure_args var(:database_support)
   }
-
-
   source "http://www.sphinxsearch.com/downloads/sphinx-0.9.9.tar.gz"
 end
