@@ -30,7 +30,7 @@ end
 
 pkg 'mysql software' do
   installs {
-    via :apt, %w[mysql-server libmysqlclient15-dev]
+    via :apt, %w[mysql-server-5.0 libmysqlclient15-dev]
     via :macports, 'mysql5-server'
   }
   provides 'mysql'
