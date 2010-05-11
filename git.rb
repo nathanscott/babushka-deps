@@ -1,19 +1,16 @@
 dep 'remote' do
-  requires 'default remote'
-  
+  requires_when_unmet 'no remote called origin'
+  define_var :remote_repo_name, :default => Dir.pwd.p.basename.to_s
   met? {
-    shell("git remote -v")["origin	git@git.inspire9.com.au:#{Dir.pwd.p.basename} (fetch)"]
+    shell("git remote -v")["#{var :git_remote}:#{var :remote_repo_name}"]
   }
   meet {
-    shell("git remote add origin git@git.inspire9.com.au:#{Dir.pwd.p.basename}")
+    shell("git remote add origin #{var :git_remote}:#{var :remote_repo_name}")
   }
 end
 
-dep 'default remote' do
-  met? {
-    failable_shell("echo $DEFAULT_REMOTE").stderr["git@git.inspire9.com.au"]
-  }
-  meet {
-    sudo "export DEFAULT_REMOTE=git@git.inspire9.com.au"
-  }
+dep 'no remote called origin' do
+  met? { shell("git remote -v")[/^origin\b/].nil? }
+  before { failable_shell("git remote rm renamed_by_babushka") }
+  meet { shell("git remote rename origin renamed_by_babushka") }
 end
