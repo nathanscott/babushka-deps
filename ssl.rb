@@ -18,19 +18,20 @@ nginx 'generate csr' do
           '' # done
         ].join("\n")
       )
+      shell("echo 'Your CSR:'").tap_log
+      shell("cat #{var :domain}.csr").tap_log
     end
   }
 end
 
 nginx 'sign cert' do
   requires 'generate csr'
-  met? { (nginx_cert_path / "#{var :domain}.crt").exists?; grep var(:ssl_certificate), (nginx_cert_path / "#{var :domain}.crt") }
+  met? { (nginx_cert_path / "#{var :domain}.crt").exists? && grep(var(:ssl_certificate), (nginx_cert_path / "#{var :domain}.crt")) }
   before { shell 'rm -f #{nginx_cert_path / "#{var :domain}.crt"}' }
   meet {
     in_dir nginx_cert_path, :create => "700", :sudo => true do
       append_to_file var(:ssl_certificate), (nginx_cert_path / "#{var :domain}.crt"), :sudo => true
-    # after { shell 'chmod 600 ~/.ssh/authorized_keys' }
-    # log_shell("signing certificate with ssl cert", "openssl x509 -req -days 365 -in #{var :domain}.csr -signkey #{var :domain}.key -out   #{var :domain}.crt", :sudo => true)
     end
+    restart_nginx
   }
 end
