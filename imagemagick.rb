@@ -1,10 +1,10 @@
-gem 'rmagick gem' do
-  requires 'imagemagick software'
-  installs 'mysql'
+dep 'rmagick.gem' do
+  requires 'imagemagick.managed'
+  installs 'rmagick'
   provides []
 end
 
-pkg 'imagemagick software' do
+dep 'imagemagick.managed' do
   installs {
     via :apt, %w[imagemagick libmagickwand-dev]
     via :brew, 'imagemagick'
