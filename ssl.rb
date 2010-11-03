@@ -1,4 +1,4 @@
-nginx 'generate csr' do
+dep 'generate csr' do
   requires 'webserver installed'
   met? { %w[key csr].all? {|ext| (nginx_cert_path / "#{var :domain}.#{ext}").exists? } }
   meet {
@@ -24,7 +24,7 @@ nginx 'generate csr' do
   }
 end
 
-nginx 'sign cert' do
+dep 'sign cert' do
   requires 'generate csr'
   met? { (nginx_cert_path / "#{var :domain}.crt").exists? && grep(var(:ssl_certificate), (nginx_cert_path / "#{var :domain}.crt")) }
   before { shell 'rm -f #{nginx_cert_path / "#{var :domain}.crt"}' }

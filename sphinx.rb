@@ -1,4 +1,4 @@
-src 'sphinx' do
+dep 'sphinx', :tempalte => 'src' do
   provides 'search'
   setup {
     define_var :database_support,
