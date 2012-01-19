@@ -1,10 +1,14 @@
 dep 'worker' do
   requires [
-    'benhoskings:Transmit.app',
+    'benhoskings:user setup',
+    'benhoskings:core software',
+    'benhoskings:Twitter.app',
     'benhoskings:LaunchBar.app',
+    'benhoskings:Cinch.app',
     'benhoskings:Dropbox.app',
-    'xaviershay:Skype.app',
     'benhoskings:Skitch.app',
+    'xaviershay:Skype.app',
+    'benhoskings:Transmit.app',
     'benhoskings:Airfoil.app',
     'benhoskings:SizeUp.app',
     'iTerm.app',
