@@ -1,7 +1,7 @@
 dep 'worker' do
   requires [
     'benhoskings:user setup',
-    'benhoskings:core software',
+    'core software',
     'benhoskings:Twitter.app',
     'benhoskings:LaunchBar.app',
     'benhoskings:Cinch.app',
@@ -18,4 +18,11 @@ dep 'worker' do
     'enable key repeat',
     'disable spell correction'
   ]
+end
+
+dep 'core software' do
+  requires {
+    on :linux, 'vim.managed', 'curl.managed', 'htop.managed', 'jnettop.managed', 'screen.managed', 'nmap.managed', 'tree.managed'
+    on :osx, 'curl.managed', 'benhoskings:jnettop.managed', 'benhoskings:nmap.managed', 'benhoskings:tree.managed'
+  }
 end
