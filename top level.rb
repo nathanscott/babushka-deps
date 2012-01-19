@@ -2,7 +2,6 @@ dep 'worker' do
   requires [
     'benhoskings:user setup',
     'core software',
-    'benhoskings:Twitter.app',
     'benhoskings:LaunchBar.app',
     'benhoskings:Cinch.app',
     'benhoskings:Dropbox.app',
