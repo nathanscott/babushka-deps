@@ -2,9 +2,9 @@ dep 'worker' do
   requires [
     'benhoskings:user setup',
     'core software',
-    'benhoskings:LaunchBar.app',
+    'LaunchBar.app',
     'benhoskings:Cinch.app',
-    'benhoskings:Dropbox.app',
+    'Dropbox.app',
     'benhoskings:Skitch.app',
     'xaviershay:Skype.app',
     'benhoskings:Transmit.app',
